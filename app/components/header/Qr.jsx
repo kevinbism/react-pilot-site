@@ -110,7 +110,7 @@ const Qr = () => {
             <SelectQr
               nameId="tot_adulti"
               numberOptions={10}
-              defaultValue={2}
+              value={2}
               labelName="Adulto"
               PluralLabelName="Adulti"
             />
@@ -132,7 +132,7 @@ const Qr = () => {
             <SelectQr
               nameId="tot_camere"
               numberOptions={5}
-              defaultValue={1}
+              value={1}
               labelName="Camera"
               PluralLabelName="Camere"
             />
@@ -154,7 +154,7 @@ const Qr = () => {
             <SelectQr
               nameId="tot_bambini"
               numberOptions={5}
-              defaultValue={0}
+              value={0}
               labelName="Bambino"
               PluralLabelName="Bambini"
               fromZero={true}
