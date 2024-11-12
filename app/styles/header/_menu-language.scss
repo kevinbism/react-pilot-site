@@ -1,0 +1,92 @@
+@use '../utils';
+
+.menu {
+  &-lang {
+    position: relative;
+    cursor: pointer;
+    z-index: 12;
+    margin-left: auto;
+
+    @include utils.media('>mobile') {
+      margin-left: 60px;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 50px;
+        @include utils.center('y');
+        left: -30px;
+        background-color: #fff;
+        transition: background-color 0.5s var(--cubic);
+
+        .menu--open ~ .header-top &,
+        .scrolled &,
+        .header--hidden & {
+          background-color: var(--grey-dark-color);
+        }
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-transform: uppercase;
+      transition: color 0.5s var(--cubic);
+
+      .menu--open ~ .header-top &,
+      .scrolled &,
+      .header--hidden & {
+        color: var(--grey-dark-color);
+      }
+
+      .qr--open ~ .header-top & {
+        @include utils.media('<=mobile') {
+          color: var(--grey-dark-color);
+        }
+      }
+    }
+
+    &__icon {
+      font-size: 10px;
+    }
+
+    &__row {
+      position: absolute;
+      background-color: #fff;
+      padding: 5px 10px;
+      transition: all 0.35s var(--cubic);
+      opacity: 0;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 10px);
+      visibility: hidden;
+      pointer-events: none;
+      border: 1px solid #eee;
+
+      .menu-lang:hover & {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: visible;
+      }
+    }
+
+    &__item {
+      position: relative;
+      text-align: center;
+
+      & + & {
+        margin-top: 5px;
+        border-top: solid 1px var(--black-color);
+        padding-top: 5px;
+      }
+    }
+
+    &__link {
+      font-size: 15px;
+      color: var(--black-color);
+    }
+  }
+}

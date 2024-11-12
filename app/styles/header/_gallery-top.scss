@@ -1,0 +1,138 @@
+@use '../utils';
+
+.gallery {
+  display: block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+
+  &-image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s var(--cubic-smooth);
+
+    &.active {
+      opacity: 1;
+    }
+
+    &__img {
+      position: relative;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  picture {
+    position: relative;
+    display: block;
+    height: 100%;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #28282a;
+      mix-blend-mode: multiply;
+      opacity: 0.35;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &-arrow {
+    position: absolute;
+    bottom: utils.rem(25px);
+    z-index: 2;
+    cursor: pointer;
+
+    &__icon {
+      color: #fff;
+      font-size: utils.rem(50px);
+    }
+
+    &--prev {
+      left: utils.rem(100px);
+    }
+
+    &--next {
+      right: utils.rem(100px);
+    }
+  }
+
+  &-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+
+    &-container {
+      @include utils.center();
+      min-width: 100%;
+      min-height: 100%;
+
+      @include utils.media('<=mobile') {
+        height: 100%;
+      }
+    }
+
+    &-audio {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      bottom: 50px;
+      left: 40px;
+      z-index: 11;
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      @include utils.media('<=tablet') {
+        left: 25px;
+        bottom: 80px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &__icon {
+        font-size: 30px;
+        color: #fff;
+        opacity: 1;
+        transition: opacity 0.75s ease;
+        position: absolute;
+
+        @include utils.media('<=tablet') {
+          font-size: 25px;
+        }
+      }
+
+      .fa-volume-up {
+        opacity: 0;
+      }
+
+      &--active {
+        .gallery-video-audio__icon {
+          opacity: 0;
+        }
+
+        .fa-volume-up {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

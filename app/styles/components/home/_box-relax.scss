@@ -1,0 +1,96 @@
+@use '../../utils' as utils;
+
+.box {
+  &-relax {
+    margin-top: 116px;
+    overflow: hidden;
+
+    &-image {
+      @include utils.aspect-ratio(390, 275);
+
+      @include utils.media('>mobile') {
+        aspect-ratio: 1131 / 563;
+        width: 82.79%;
+        max-height: 563px;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: calc(100% - 60px);
+        height: calc(100% + 39px);
+        background-color: var(--secondary-color);
+        z-index: -1;
+        @include utils.center();
+
+        @include utils.media('>mobile') {
+          top: auto;
+          left: auto;
+          transform: none;
+          right: -26px;
+          bottom: -26px;
+          width: 463px;
+          height: auto;
+          aspect-ratio: 463 / 328;
+        }
+      }
+    }
+
+    &-inner {
+      margin-top: utils.clampy(65px, 81px);
+      padding: 0 20px;
+
+      @include utils.media('>mobile') {
+        padding-right: 0;
+        padding-left: 66px;
+      }
+    }
+
+    &-content {
+      padding-top: 45px;
+      width: 100%;
+
+      @include utils.media('>mobile') {
+        width: 51.62%;
+        padding-top: 15px;
+      }
+
+      &__title {
+        width: 100%;
+        opacity: 0.8;
+
+        @include utils.media('>mobile') {
+          width: 48.38%;
+          padding-right: utils.clampy(50px, 200px, 768px);
+        }
+      }
+
+      &__text {
+        margin-top: 0;
+
+        @include utils.media('>mobile') {
+          padding-right: utils.clampy(20px, 158px, 768px);
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          width: 100%;
+          position: absolute;
+          bottom: -50px;
+          left: 0;
+          height: 1px;
+          background-color: var(--primary-color);
+
+          @include utils.media('>tablet') {
+            width: calc(100% + 200px);
+          }
+        }
+      }
+
+      &__link {
+        margin-top: 89px;
+      }
+    }
+  }
+}

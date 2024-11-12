@@ -1,0 +1,218 @@
+@use '../utils';
+
+.header {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 55px);
+
+  @include utils.media('>mobile') {
+    height: 100%;
+  }
+
+  &--hidden {
+    height: auto;
+    min-height: 79px;
+  }
+
+  &-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 12;
+    padding: 26px 20px;
+    background-color: transparent;
+    transition: padding 0.75s var(--cubic), background-color 0.75s var(--cubic);
+
+    @include utils.media('>mobile') {
+      padding: 47px 42px;
+    }
+
+    .scrolled &,
+    .header--hidden & {
+      background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+      @include utils.media('>mobile') {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+    }
+
+    .menu--open ~ &,
+    .qr--open ~ & {
+      @include utils.media('<=mobile') {
+        background-color: #fff;
+      }
+    }
+  }
+
+  &-logo {
+    @include utils.center();
+    z-index: 10;
+    transition: opacity 0.5s var(--cubic);
+
+    .header--hidden > & {
+      display: none;
+    }
+
+    .header-top & {
+      opacity: 0;
+      pointer-events: none;
+
+      .scrolled &,
+      .header--hidden & {
+        opacity: 1;
+        pointer-events: visible;
+      }
+
+      .menu--open ~ &,
+      .qr--open ~ & {
+        @include utils.media('<=mobile') {
+          opacity: 1;
+          pointer-events: visible;
+        }
+      }
+    }
+
+    &-picture {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__img {
+      object-fit: contain;
+      width: 225px;
+      height: 183.14px;
+      position: relative;
+      top: auto;
+      left: auto;
+
+      .header-top & {
+        width: 91.66px;
+        height: 66px;
+      }
+
+      .header-logo--restaurant & {
+        width: utils.clampy(310px, 460px);
+        height: auto;
+      }
+    }
+  }
+
+  &-voucher {
+    display: none;
+    margin-left: auto;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    transition: color 0.5s var(--cubic);
+
+    @media screen and (max-width: 900px) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @include utils.media('>mobile') {
+      display: inline-block;
+
+      .scrolled &,
+      .header--hidden &,
+      .qr--open ~ .header-top & {
+        color: var(--grey-dark-color);
+      }
+    }
+  }
+
+  &-book {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    display: none;
+    margin-left: 48px;
+
+    @media screen and (max-width: 1100px) {
+      margin-left: 20px;
+    }
+
+    @include utils.media('>mobile') {
+      display: block;
+    }
+
+    .action-menu & {
+      display: block;
+      margin-left: 0;
+    }
+
+    &__label {
+      min-width: 193px;
+      font-size: 18px;
+      color: #fff;
+      text-transform: uppercase;
+      font-family: var(--font-title);
+      background-color: var(--primary-color);
+      padding: 18.5px 20px;
+      gap: 15px;
+      transition: background-color 0.5s var(--cubic);
+
+      .action-menu & {
+        background-color: var(--grey-dark-color);
+        min-width: 175px;
+        padding: 18.5px 30px;
+      }
+
+      .header-book--open & {
+        background-color: #8b877e;
+      }
+
+      @include utils.media('>tablet') {
+        .header-book:not(.header-book--open) &:hover {
+          background-color: color-mix(in srgb, var(--primary-color) 20%, transparent);
+        }
+      }
+
+      &--close {
+        @include utils.center('x');
+        top: 100%;
+        color: #fff;
+        background-color: #8b877e;
+        z-index: 2;
+        transition: top 0.75s var(--cubic-super-smooth) 0s;
+
+        .header-book--open & {
+          top: 0;
+        }
+      }
+    }
+
+    &-restaurant {
+      @include utils.center('x');
+      z-index: 3;
+      bottom: 110px;
+      background-color: var(--secondary-color);
+      padding-inline: 19.6px;
+
+      @include utils.media('>tablet') {
+        bottom: 150px;
+      }
+    }
+  }
+
+  &-arrow {
+    @include utils.center('x');
+    bottom: 20px;
+    z-index: 8;
+    cursor: pointer;
+
+    .header--hidden & {
+      display: none;
+    }
+
+    &__icon {
+      color: #fff;
+      font-size: 60px;
+    }
+  }
+}

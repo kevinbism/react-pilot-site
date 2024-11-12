@@ -1,0 +1,31 @@
+@use '../utils' as utils;
+
+.footer {
+  &-menu {
+    position: relative;
+    margin-top: 54px;
+
+    @include utils.media('>tablet') {
+      margin-top: 0;
+    }
+
+    &__row {
+      gap: 21px;
+      flex-direction: row;
+      justify-content: center;
+
+      @include utils.media('>tablet') {
+        flex-direction: column;
+      }
+    }
+
+    &__item {
+      position: relative;
+    }
+
+    &__link {
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+  }
+}

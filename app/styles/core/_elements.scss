@@ -1,0 +1,190 @@
+@use '../utils';
+
+.box {
+  position: relative;
+
+  &-sized {
+    width: 100%;
+    max-width: 1520px;
+    margin: 0 auto;
+  }
+}
+
+.p-rel {
+  position: relative;
+}
+
+.p-abs {
+  position: absolute;
+}
+
+.title {
+  font-size: utils.clampy(40px, 62px);
+  line-height: 1.209em;
+  color: var(--text-color);
+  font-family: var(--font-title);
+
+  &-light {
+    @extend .title;
+    color: color-mix(in srgb, var(--primary-color) 89%, transparent);
+  }
+}
+
+.subtitle {
+  font-family: var(--font-title);
+  font-size: utils.clampy(30px, 40px);
+  line-height: 1.5em;
+  color: var(--brown-dark-color);
+}
+
+.center {
+  text-align: center;
+}
+
+.text {
+  font-size: 17px;
+  line-height: 1.764em;
+  margin-top: utils.clampy(40px, 63px);
+  font-weight: 300;
+
+  strong {
+    font-weight: 400;
+  }
+
+  &:empty {
+    margin-top: 0;
+  }
+}
+
+.link {
+  display: inline-block;
+  position: relative;
+  font-size: 21px;
+  line-height: 2.38em;
+  color: var(--brown-dark-color);
+  margin-top: 30px;
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  white-space: nowrap;
+  transition: background-color 0.5s var(--cubic), padding 0.5s var(--cubic);
+
+  &__icon {
+    margin-left: 18px;
+    transition: margin 0.5s var(--cubic);
+  }
+
+  @include utils.media('>tablet') {
+    padding-right: 19.6px;
+
+    &:hover {
+      background-color: var(--secondary-color);
+      padding-left: 19.6px;
+
+      .link__icon {
+        margin-left: 35px;
+      }
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition-property: height;
+  display: none;
+
+  @include utils.media('>tablet') {
+    display: block;
+  }
+}
+
+.pulsanti_LG3 a {
+  @extend .link;
+  margin-top: 40px;
+}
+
+.visuallyhidden {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(0px 0px 99.9% 99.9%);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+}
+
+.pad {
+  @include utils.box(padding);
+}
+
+.mar {
+  &-auto {
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-inline {
+    display: inline-flex;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+
+    &-tablet {
+      @include utils.media('<=tablet') {
+        flex-wrap: wrap;
+      }
+    }
+
+    &-mobile {
+      @include utils.media('<=mobile') {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  &-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &-jc {
+    &-sa {
+      justify-content: space-around;
+    }
+
+    &-sb {
+      justify-content: space-between;
+    }
+
+    &-c {
+      justify-content: center;
+    }
+  }
+
+  &-ai {
+    &-sa {
+      align-items: space-around;
+    }
+
+    &-sb {
+      align-items: space-between;
+    }
+
+    &-c {
+      align-items: center;
+    }
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+}

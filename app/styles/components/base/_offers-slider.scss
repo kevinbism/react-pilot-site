@@ -1,0 +1,56 @@
+@use '../../utils/' as utils;
+
+.box {
+  &-offers {
+    margin-top: utils.clampy(100px, 175px);
+    padding: 0 utils.clampy(20px, 41px);
+
+    &-slider {
+      margin-top: utils.clampy(67px, 80px);
+
+      .swiper-slide {
+        height: auto;
+        display: flex;
+      }
+    }
+
+    &-image {
+      @include utils.aspect-ratio(408, 300);
+    }
+
+    &-content {
+      margin-top: 19px;
+      padding: 31px utils.clampy(20px, 31px) 26px;
+      background-color: #fff;
+      text-align: left;
+      flex-grow: 1;
+      transition: background-color 0.5s var(--cubic);
+      text-align: center;
+
+      @include utils.media('>mobile') {
+        text-align: left;
+        align-items: flex-start;
+      }
+
+      .swiper-slide-active & {
+        background-color: var(--secondary-color);
+      }
+
+      &__title {
+        font-size: 21px;
+        font-family: var(--font-title);
+        text-transform: uppercase;
+        line-height: 1.23em;
+      }
+
+      &__text {
+        margin-top: 44px;
+        margin-bottom: 26px;
+      }
+
+      &__link {
+        margin-top: auto;
+      }
+    }
+  }
+}

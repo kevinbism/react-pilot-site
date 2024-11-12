@@ -1,0 +1,100 @@
+@use '../utils' as utils;
+
+.footer {
+  position: relative;
+  background-color: var(--grey-dark-color);
+  color: #fff;
+  margin-top: utils.clampy(77px, 113px);
+  padding-top: 58px;
+  padding-bottom: 85px;
+
+  @include utils.media('>mobile') {
+    padding-bottom: 26px;
+  }
+
+  &-wrapper {
+    width: 100%;
+    padding-left: utils.clampy(20px, 34px, 1024px);
+    padding-right: utils.clampy(20px, 126px, 1024px);
+    flex-direction: column;
+    align-items: center;
+
+    @include utils.media('>tablet') {
+      align-items: flex-start;
+      flex-direction: row;
+    }
+  }
+
+  &-logo {
+    position: relative;
+
+    picture {
+      position: relative;
+      top: auto;
+      left: auto;
+    }
+
+    &__img {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 180px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  &-inner {
+    margin: 0 auto;
+  }
+
+  &-address {
+    font-family: var(--font-title);
+    font-size: utils.clampy(17px, 20px);
+    line-height: 1.5em;
+    text-align: center;
+    margin-top: 40px;
+
+    @include utils.media('>tablet') {
+      text-align: left;
+      margin-top: 0;
+    }
+  }
+
+  &-social {
+    position: relative;
+    margin-top: 27px;
+
+    &__row {
+      display: flex;
+      gap: 31px;
+      justify-content: center;
+
+      @include utils.media('>tablet') {
+        justify-content: flex-start;
+      }
+    }
+
+    &__icon {
+      font-size: 22.4px;
+    }
+  }
+
+  &-bottom {
+    position: relative;
+    padding: 34px 46px 0;
+    margin-top: 54.6px;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    &::before {
+      content: '';
+      display: block;
+      width: calc(100% - 92px);
+      @include utils.center('x');
+      top: 0;
+      height: 1px;
+      background-color: #fff;
+    }
+  }
+}

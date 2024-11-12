@@ -1,0 +1,125 @@
+@use '../../utils';
+
+.box {
+  &-intro {
+    padding-top: 96px;
+
+    &__text {
+      max-width: 933px;
+      padding: 0 43px;
+    }
+
+    &-wrapper {
+      padding-left: utils.clampy(14px, 98px);
+      padding-right: utils.clampy(14px, 42px);
+      margin-top: 67px;
+
+      @include utils.media('<=tablet-small') {
+        flex-wrap: wrap;
+      }
+    }
+
+    &-inner {
+      padding-left: utils.clampy(20px, 193px);
+      padding-right: utils.clampy(20px, 72px);
+      margin-top: 86px;
+      flex-direction: column;
+      align-items: center;
+
+      @include utils.media('>mobile') {
+        flex-direction: row;
+        align-items: flex-end;
+      }
+
+      @include utils.media('>tablet-small') {
+        margin-top: -60px;
+      }
+
+      .page-mosaic & {
+        margin-top: 0;
+
+        @include utils.media('>mobile') {
+          margin-top: -60px;
+        }
+      }
+
+      &__title {
+        text-align: center;
+        margin-top: 28px;
+
+        @include utils.media('>mobile') {
+          margin-top: 0;
+          margin-left: 10px;
+          margin-bottom: 30px;
+          text-align: left;
+        }
+      }
+    }
+
+    &-image {
+      @include utils.aspect-ratio();
+
+      .box-intro-wrapper & {
+        width: 100%;
+        aspect-ratio: 741 / 447;
+
+        @include utils.media('>tablet-small') {
+          width: 60.44%;
+        }
+      }
+
+      .page-mosaic & {
+        display: none;
+
+        @include utils.media('>mobile') {
+          display: block;
+          aspect-ratio: 1081 / 447;
+          width: calc(100% - 187px);
+        }
+      }
+
+      .box-intro-inner & {
+        aspect-ratio: 393 / 407;
+        max-width: 242px;
+
+        .page-mosaic & {
+          display: block;
+        }
+
+        @include utils.media('>mobile') {
+          border: solid 20px #fff;
+          max-width: 393px;
+        }
+      }
+    }
+
+    &-content {
+      width: 100%;
+      padding-top: utils.clampy(45px, 121px, 980px);
+
+      @include utils.media('>tablet-small') {
+        padding-left: utils.clampy(20px, 74px, 767px);
+        width: 39.56%;
+      }
+
+      &__text {
+        margin-top: 0;
+
+        &::after {
+          content: '';
+          display: block;
+          width: calc(100% + 140px);
+          position: absolute;
+          right: 0;
+          height: 1px;
+          background-color: var(--primary-color);
+          bottom: utils.clampy(-40px, -70px, 980px);
+        }
+      }
+
+      &__link {
+        margin-top: utils.clampy(65px, 100px, 980px);
+      }
+    }
+  }
+}
