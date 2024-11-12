@@ -1,0 +1,73 @@
+@use '../utils' as utils;
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 55px);
+  background: var(--grey-color);
+  z-index: 12;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateX(30px);
+  padding: 172px 50px 20px;
+  transition: transform 0.5s cubic-bezier(0, 0, 0.07, 1), opacity 0.5s ease, visibility 0.5s ease;
+
+  @include utils.media('>mobile') {
+    padding: utils.clampy(172px, 214px) 0 50px 41px;
+    max-width: 368px;
+    height: 100%;
+  }
+
+  @include utils.media('height<=700px', 'landscape') {
+    padding-top: 150px;
+  }
+
+  &--open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: visible;
+    visibility: visible;
+  }
+
+  &__row {
+    position: relative;
+
+    @include utils.media('<=mobile') {
+      @include utils.scrollbar(var(--primary-color), var(--secondary-color));
+    }
+  }
+
+  &__item {
+    position: relative;
+
+    & + & {
+      margin-top: 30px;
+    }
+  }
+
+  &__link {
+    position: relative;
+    font-size: 18px;
+    color: var(--black-color);
+    text-transform: uppercase;
+    font-family: var(--font-title);
+    transition: color 0.5s var(--cubic);
+
+    @include utils.media('>mobile') {
+      font-size: 16px;
+    }
+
+    @include utils.media('>tablet') {
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+
+    &--active {
+      color: var(--primary-color);
+    }
+  }
+}

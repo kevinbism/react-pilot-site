@@ -1,14 +1,22 @@
-import styles from '@/styles/header/Hamburger.module.scss';
+'use client';
+
+import '@/styles/header/_hamburger.scss';
+import { useHeader } from '@/context/HeaderContext';
 
 const Hamburger = () => {
+  const { toggleMenu, isMenuOpen } = useHeader();
   return (
-    <div className={`${styles.hamburger} flex flex-ai-c`}>
-      <div className={styles['hamburger-box']}>
-        <span className={styles.hamburger__line} />
-        <span className={styles.hamburger__line} />
-        <span className={styles.hamburger__line} />
-        <span className={styles.hamburger__line} />
-        <span className={styles.hamburger__line} />
+    <div
+      className={`hamburger ${isMenuOpen ? 'hamburger--open' : ''} flex flex-ai-c`}
+      onClick={toggleMenu}
+      onKeyDown={e => e.key === 'Enter' && toggleMenu()}
+    >
+      <div className="hamburger-box">
+        <span className="hamburger__line" />
+        <span className="hamburger__line" />
+        <span className="hamburger__line" />
+        <span className="hamburger__line" />
+        <span className="hamburger__line" />
       </div>
     </div>
   );

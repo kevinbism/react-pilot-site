@@ -1,8 +1,16 @@
+'use client';
 import '@/styles/header/_book-button.scss';
+import { useHeader } from '@/context/HeaderContext';
 
 const BookButton = () => {
+  const { isBookOpen, toggleBook } = useHeader();
+
   return (
-    <div className="book-button">
+    <div
+      className={`book-button ${isBookOpen ? 'book-button--open' : ''}`}
+      onClick={toggleBook}
+      onKeyDown={e => e.key === 'Enter' && toggleBook()}
+    >
       <span className="book-button__label flex flex-ai-c flex-jc-sb">
         prenota l&apos;hotel <i className="fa-light fa-calendar book-button__icon" />
       </span>
