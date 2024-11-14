@@ -1,0 +1,75 @@
+@use '../../utils' as utils;
+
+.page {
+  position: relative;
+  padding: 81px utils.clampy(20px, 50px) 0;
+
+  &--center {
+    text-align: center;
+  }
+
+  &-breadcrumb {
+    position: relative;
+    margin-bottom: utils.clampy(50px, 74px);
+
+    &__row {
+      gap: 15px 0;
+    }
+
+    &__item {
+      position: relative;
+      font-size: utils.clampy(15px, 17px);
+      text-transform: uppercase;
+      font-family: var(--font-title);
+      color: var(--primary-color);
+
+      &::after {
+        content: '>';
+        display: inline-block;
+        padding: 0 5px;
+      }
+
+      &:last-of-type {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &-wrapper {
+    max-width: 847px;
+  }
+
+  &__title {
+    position: relative;
+
+    .page--center & {
+      font-size: 50px;
+      line-height: 1.2em;
+      color: var(--black-color);
+    }
+  }
+
+  &__text {
+    margin-top: utils.clampy(40px, 64px);
+
+    h2 {
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 21px;
+      font-weight: 600;
+    }
+  }
+
+  &-mosaic {
+    margin-top: utils.clampy(80px, 119px);
+
+    @include utils.media('>mobile') {
+      padding-left: utils.clampy(14px, 98px);
+    }
+  }
+}
