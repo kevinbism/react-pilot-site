@@ -27,7 +27,7 @@ const OffersSlider = () => {
         slidesPerView={3}
         centeredSlides={true}
         loop={true}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         breakpoints={{
           320: {
             slidesPerView: 1,
