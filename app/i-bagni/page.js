@@ -1,5 +1,10 @@
 import ContentPage from '@/components/base/ContentPage';
 
+export const metadata = {
+  title: 'I Bagni - Villa Grey Template',
+  description: 'Sito web per la gestione del Pilota Villa Grey',
+};
+
 export default function Page() {
   return (
     <ContentPage
