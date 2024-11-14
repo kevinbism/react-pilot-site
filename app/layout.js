@@ -1,6 +1,6 @@
 import '@/styles/globals.scss';
 import Script from 'next/script';
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import ScrollHandler from './utils/ScrollHandler';
 
