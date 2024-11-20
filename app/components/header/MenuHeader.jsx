@@ -4,7 +4,7 @@ import '@/styles/header/_menu-header.scss';
 import Link from 'next/link';
 import { useHeader } from '@/context/HeaderContext';
 import { useEffect, useState } from 'react';
-import { fetchMenu } from '@/route';
+import { fetchMenu } from '@/api/route';
 
 const MenuHeader = () => {
   const { isMenuOpen } = useHeader();

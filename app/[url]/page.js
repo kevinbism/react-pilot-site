@@ -1,4 +1,4 @@
-import { fetchMenu, fetchPage } from '@/route';
+import { fetchMenu, fetchPage } from '@/api/route';
 import ContentPage from '@/components/base/ContentPage';
 
 export async function generateStaticParams() {
