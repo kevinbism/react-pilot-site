@@ -1,5 +1,6 @@
 export async function fetchMenu() {
   const res = await fetch('https://reactpilotapi.blastdemo.com/menu-top-items.json', {
+    method: 'GET',
     headers: {
       Accept: 'application/json',
     },
@@ -9,7 +10,9 @@ export async function fetchMenu() {
 }
 
 export async function fetchPage() {
-  const res = await fetch('https://reactpilotapi.blastdemo.com/pages.json');
+  const res = await fetch('https://reactpilotapi.blastdemo.com/pages.json', {
+    method: 'GET',
+  });
   if (!res.ok) throw new Error('Errore nel recupero della pagina');
   return res.json();
 }
