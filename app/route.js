@@ -1,5 +1,9 @@
 export async function fetchMenu() {
-  const res = await fetch('https://reactpilotapi.blastdemo.com/menu-top-items.json');
+  const res = await fetch('https://reactpilotapi.blastdemo.com/menu-top-items.json', {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
   if (!res.ok) throw new Error('Errore nel recupero del menu');
   return res.json();
 }
