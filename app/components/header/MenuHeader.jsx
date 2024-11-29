@@ -29,6 +29,7 @@ const MenuHeader = () => {
             <Link
               className="menu__link"
               href={url}
+              scroll={true}
             >
               {name}
             </Link>
