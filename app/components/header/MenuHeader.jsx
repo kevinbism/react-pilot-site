@@ -1,37 +1,37 @@
 'use client';
 
 import '@/styles/header/_menu-header.scss';
-import { useHeader } from '@/context/HeaderContext';
 import Link from 'next/link';
+import { useHeader } from '@/context/HeaderContext';
+import { useEffect, useState } from 'react';
+import { fetchMenu } from '@/api/route';
 
 const MenuHeader = () => {
   const { isMenuOpen } = useHeader();
+  const [menuItems, setMenuItems] = useState([]);
 
-  const menuList = [
-    { name: 'Villa & Dimora', url: '/villa-dimora' },
-    { name: 'I Bagni', url: '/i-bagni' },
-    { name: 'Camere & Suite', url: '/camere-suite' },
-    { name: 'Matrimoni', url: '/matrimoni' },
-    { name: 'Sitle Forte dei Marmi', url: '/sitle-forte-dei-marmi' },
-    { name: 'Location', url: '/location' },
-    { name: 'Gallery', url: '/gallery' },
-    { name: 'Offerte', url: '/offerte' },
-    { name: "Prenota l'hotel", url: '/prenota-hotel' },
-  ];
+  useEffect(() => {
+    const getMenuItems = async () => {
+      const items = await fetchMenu();
+      setMenuItems(items.menu);
+    };
+    getMenuItems();
+  }, []);
 
   return (
     <div className={`menu ${isMenuOpen ? 'menu--open' : ''}`}>
       <ul className="menu__row">
-        {menuList.map(({ name: item, url }) => (
+        {menuItems.map(({ id, name, url }) => (
           <li
-            key={item}
             className="menu__item"
+            key={id}
           >
             <Link
-              href={`${url}`}
               className="menu__link"
+              href={url}
+              scroll={true}
             >
-              {item}
+              {name}
             </Link>
           </li>
         ))}

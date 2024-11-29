@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Subtitle from '../ui/Subtitle';
 import Text from '../ui/Text';
 
-const ContentPage = ({ titleBreadcrumb, title, children }) => {
+const ContentPage = ({ titleBreadcrumb, title, children, url }) => {
   return (
     <>
       <section className="page">
@@ -13,7 +13,7 @@ const ContentPage = ({ titleBreadcrumb, title, children }) => {
               <Link href="/">Home</Link>
             </li>
             <li className="page-breadcrumb__item">
-              <Link href="/villa-dimora">{titleBreadcrumb}</Link>
+              <Link href={url}>{titleBreadcrumb}</Link>
             </li>
           </ul>
         </div>

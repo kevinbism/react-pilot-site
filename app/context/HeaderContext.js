@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
 const HeaderContext = createContext();
 
@@ -8,21 +9,33 @@ export const HeaderProvider = ({ children }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isBookOpen, setBookOpen] = useState(false);
   const [isQrOpen, setQrOpen] = useState(false);
+  const pathname = usePathname();
+
+  const resetState = useCallback(() => {
+    setMenuOpen(false);
+    setBookOpen(false);
+    setQrOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (!pathname) return;
+
+    resetState();
+  }, [pathname, resetState]);
 
   const toggleMenu = () => {
     setMenuOpen(prev => !prev);
-    setBookOpen(false); // Chiude il book quando si apre il menu
-    setQrOpen(false); // Chiude il QR quando si apre il menu
+    setBookOpen(false);
+    setQrOpen(false);
   };
 
   const toggleBook = () => {
     setBookOpen(prev => !prev);
-    setQrOpen(prev => !prev); // Apre/chiude il QR insieme al book
-    setMenuOpen(false); // Chiude il menu quando si apre il book
+    setQrOpen(prev => !prev);
   };
 
   return (
-    <HeaderContext.Provider value={{ isMenuOpen, toggleMenu, isBookOpen, toggleBook, isQrOpen }}>
+    <HeaderContext.Provider value={{ isMenuOpen, isBookOpen, isQrOpen, toggleMenu, toggleBook }}>
       {children}
     </HeaderContext.Provider>
   );
